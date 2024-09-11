@@ -5,10 +5,7 @@ import lista.supemercado.api.services.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,31 @@ public class ProdutoController {
         return ResponseEntity.ok().body(list);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity <Produto> save(@RequestBody Produto produto){
+        final var newProduto = service.save(produto);
+        return ResponseEntity.ok().body(newProduto);
+    }
 
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Produto> update(@RequestBody Produto produto){
+        final var updateProduto = service.update(produto);
+        return ResponseEntity.ok().body(updateProduto);
+    }
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Void> delete(@RequestBody Produto produto){
+        service.delete(produto.getId());
+        return ResponseEntity.noContent().build();
+    }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity <Void> deleteById(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
