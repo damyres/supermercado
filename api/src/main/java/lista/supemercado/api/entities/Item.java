@@ -9,11 +9,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "itens")
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "TB_ITEM")
 public class Item implements Serializable {
 
     @Id

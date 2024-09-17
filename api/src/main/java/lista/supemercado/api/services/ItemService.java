@@ -15,7 +15,10 @@ public class ItemService {
 
     public List<Item> findall() {
         return repository.findAll();
+    }
 
+    public Item save(final Item item){
+        return repository.save(item);
     }
 
 }

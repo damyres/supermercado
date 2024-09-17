@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class ProdutoService {
         throw new RuntimeException("Produto não existe");
     }
 
-    public void delete(Long id){
+    public void delete(UUID id){
        repository.deleteById(id);
     }
 }
