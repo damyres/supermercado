@@ -5,10 +5,7 @@ import lista.supemercado.api.services.CategoriaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,12 @@ public class CategoriaController {
     public ResponseEntity<List<Categoria>> findAll(){
         final var list = categoriaService.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Categoria> save(@RequestBody Categoria categoria){
+        final var newCategoria = categoriaService.save(categoria);
+        return ResponseEntity.ok().body(newCategoria);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequestMapping("/itens")
+@RequestMapping("/tb_item")
 @RestController
 @RequiredArgsConstructor
 public class ItemController {
