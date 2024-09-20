@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ItemService {
 
-    private final ItemRepository repository;
+    private ItemRepository itemRepository;
+
+    public void setItemRepository (ItemRepository itemRepository){
+        this.itemRepository = itemRepository;
+    }
 
     public List<Item> findall() {
-        return repository.findAll();
+        return itemRepository.findAll();
     }
 
     public Item save(final Item item){
-        return repository.save(item);
+        return itemRepository.save(item);
     }
 
 }

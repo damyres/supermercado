@@ -3,14 +3,21 @@ package lista.supemercado.api.services;
 import lista.supemercado.api.entities.Categoria;
 import lista.supemercado.api.repositories.CategoriaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CategoriaService {
-    private final CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+//    public CategoriaService (CategoriaRepository categoriaRepository){
+//        this.categoriaRepository = categoriaRepository;
+//    }
+
 
     public List<Categoria> findAll(){
         return categoriaRepository.findAll();

@@ -24,6 +24,7 @@ public class ProdutoController {
         return ResponseEntity.ok().body(list);
     }
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Produto> save(@RequestBody Produto produto){
