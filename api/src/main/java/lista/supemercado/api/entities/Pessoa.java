@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_PESSOA")
+@Table(name = "PESSOAS")
 public class Pessoa extends RepresentationModel<Pessoa> implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -19,27 +19,27 @@ public class Pessoa extends RepresentationModel<Pessoa> implements Serializable 
 
     private String nome;
 
-    public Pessoa(){
+    public Pessoa() {
 
     }
 
-    public Pessoa(PessoaDto pessoaDto){
+    public Pessoa(PessoaDto pessoaDto) {
         this.nome = pessoaDto.nome();
     }
 
-    public UUID getId(){
+    public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

@@ -2,11 +2,12 @@ package lista.supemercado.api.entities;
 
 
 import jakarta.persistence.*;
+import lista.supemercado.api.dtos.CategoriaDto;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name = "TB_CATEGORIA")
+@Table(name = "CATEGORIAS")
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1l;
 
@@ -18,6 +19,9 @@ public class Categoria implements Serializable {
 
     public Categoria() {
 
+    }
+    public Categoria (CategoriaDto categoriaDto){
+        this.nome = categoriaDto.nome();
     }
 
     public Integer getId() {

@@ -1,25 +1,25 @@
 package lista.supemercado.api.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name = "TB_ITEM")
-public class Item implements Serializable {
+@Table(name = "ITEMS")
+public class Item extends RepresentationModel<Item> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Produto produto;
 
     private Integer quantidade;
+
+    @ManyToOne
+    private Compra compra;
 
     public Item(){
 
@@ -49,5 +49,12 @@ public class Item implements Serializable {
         this.quantidade = quantidade;
     }
 
+    public Compra getCompra(){
+        return compra;
+    }
+
+    public void setCompra(Compra compra){
+        this.compra = compra;
+    }
 
 }

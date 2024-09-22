@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lista.supemercado.api.dtos.PessoaDto;
 import lista.supemercado.api.entities.Pessoa;
 import lista.supemercado.api.services.PessoaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +17,15 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/tb_pessoa")
+@RequestMapping("/pessoa")
 public class PessoaController {
     private final PessoaService pessoaService;
-
     @Autowired
     public PessoaController(PessoaService pessoaService){
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Pessoa>> findAll() {
         final var list = pessoaService.findAll();
@@ -48,14 +46,14 @@ public class PessoaController {
 //    }
 
     //ultilizando o DTO
-    @PostMapping
+    @PostMapping("/inserir")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Pessoa> save(@RequestBody @Valid PessoaDto pessoaDto){
         final var newPessoa = pessoaService.save(pessoaDto);
         return ResponseEntity.ok().body(newPessoa);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<Object> getOnePessoa(@PathVariable(value = "id") UUID id){
         Optional<Pessoa> pessoa = pessoaService.findById(id);
         if(pessoa.isEmpty()){
@@ -65,4 +63,17 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body(pessoa.get());
     }
 
+    @PutMapping("atualizar")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Pessoa> update(@RequestBody Pessoa pessoa){
+        final var updatePessoa = pessoaService.update(pessoa);
+        return ResponseEntity.ok().body(updatePessoa);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Pessoa> delete(@PathVariable UUID id){
+        pessoaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

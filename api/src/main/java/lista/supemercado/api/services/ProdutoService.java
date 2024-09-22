@@ -2,17 +2,20 @@ package lista.supemercado.api.services;
 
 import lista.supemercado.api.entities.Produto;
 import lista.supemercado.api.repositories.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
-//@RequiredArgsConstructor
 public class ProdutoService {
 
     private ProdutoRepository produtoRepository;
 
+    @Autowired
     public ProdutoService (ProdutoRepository produtoRepository){
         this.produtoRepository = produtoRepository;
     }
@@ -21,6 +24,10 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public Optional<Produto> findById(UUID id){
+        return produtoRepository.findById(id);
+
+    }
     public Produto save(final Produto produto) {
         return produtoRepository.save(produto);
     }
